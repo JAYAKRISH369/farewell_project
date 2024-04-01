@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Verify passkey:-
+    <form action="/verify" method="post">
+    <input type="hidden" name="rollnumber" value="<%=locals.rollnumber%>">
+    <input type="hidden" name="email" value="<%=locals.email%>" >
+    <input type="hidden" name="token" value="<%=locals.token%>" >
+    <label>Enter pass key:</label>
+    <input type="password" name="verificationToken" placeholder="pass key please...">
+    <button type="submit">verify..</butsston>
+</form>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+  position: relative;
+  display: inline-block;
+}
+
+.highlight {
+  position: relative;
+  cursor: pointer;
+}
+
+.highlight:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  background-color: #f0f0f0;
+  padding: 5px;
+  border-radius: 5px;
+  animation: slideFromRight 0.5s forwards;
+}
+
+.highlight:hover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 10px; /* Width of the rectangle */
+  height: 10px; /* Height of the rectangle */
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+@keyframes slideFromRight {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="highlight" data-tooltip="Artificial Intelligence">AIDS</span> - <span class="highlight" data-tooltip="Annamacharya University">AU</span>
+      </div>
+
+      <div>
+        <form action="/student-register" method="post">
+            <label>Enter</label>
+            <label>rollno:-</label>
+            <input name="rollnumber" type="text" placeholder="enter full Roll Number">
+            <label>PassKey:-</label>
+            <input name="key" type="text" placeholder="key please..">
+            <button type="submit">Verify</button>
+        </form>
+      </div>
+      
+</body>
+</html>
