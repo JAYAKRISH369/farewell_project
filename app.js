@@ -1,6 +1,7 @@
 import express from "express";
 // import mongoose from "mongoose";
 import path from "path";
+import cors from "cors";
 import {fileURLToPath} from 'url';
 import {dirname} from "path";
 import bodyparser from "body-parser";
@@ -16,10 +17,14 @@ const app=express();
 const __filename=fileURLToPath(import.meta.url);
 const __dirname =dirname (__filename);
 const port=3000;
-const uri='mongodb://localhost:27017';
+const uri=process.env.MONGO_URL;
 const dbName="farewell";
 const collectionName='students';
 
+app.use(cors({
+origin:['file:///D:/programing%20files/html%20programs/test-farewell.html'],
+credentials:true,
+}));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.json());

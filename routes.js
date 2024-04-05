@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { BasePay, Snack } = require('./models');
+const { BasePay, Snack } = require('./src/models');
 
 // Route to set base pay
 router.post('/setBasePay', async (req, res) => {
@@ -15,7 +15,7 @@ router.post('/setBasePay', async (req, res) => {
 
 // Route to update snacks section
 router.put('/updateSnacks', async (req, res) => {
-  try {
+  try{
     const { item } = req.body;
     let snack = await Snack.findOne({ item });
     if (!snack) {
@@ -24,9 +24,9 @@ router.put('/updateSnacks', async (req, res) => {
     snack.count += 1;
     await snack.save();
     res.status(200).json(snack);
-  } catch (error) {
+  }catch (error){
     res.status(400).json({ error: error.message });
   }
 });
 
-export router ;
+module.exports = router;
