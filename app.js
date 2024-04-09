@@ -16,7 +16,7 @@ dotenv.config();
 const app=express();
 const __filename=fileURLToPath(import.meta.url);
 const __dirname =dirname (__filename);
-const port=3000;
+const port=process.env.PORT||3000;
 const uri=process.env.MONGO_URL;
 const dbName="farewell";
 const collectionName='students';
@@ -31,6 +31,11 @@ app.use(express.json());
 app.use(express.static("public"));
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://your-domain.com'); // Replace with your domain
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 // mongoose.connect('mongodb://localhost:27017/farewell')
 // .then(()=>console.log('connected to mongoDB message'))
@@ -223,7 +228,8 @@ app.post("/Farewell-party",async(req,res)=>{
       if(user){ 
         const passwordMatch=await bcrypt.compare(password,user.password);
         if(passwordMatch){
-        res.render("Farewell-party",{rollno:rollnumber,name:user.name});
+        // res.render("Farewell-party",{rollno:rollnumber,name:user.name});
+        res.redirect(`https://mlmanage.netlify.app?rollno:${rollnumber},name:${user.name}`);
         }
         else{
           return res.status(404).send("password don't mathc");
