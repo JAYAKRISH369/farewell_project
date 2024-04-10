@@ -8,9 +8,9 @@ import bodyparser from "body-parser";
 import {MongoClient} from "mongodb";
 // import routes from "./routes.js";
 import nodemailer from "nodemailer"
-import {v4 as uuidv4}from "uuid";
+// import {v4 as uuidv4}from "uuid";
 import dotenv from "dotenv";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 dotenv.config();
 const app=express();
@@ -107,8 +107,8 @@ app.post("/reset-password",(req,res)=>{
   }
 
   //generate verification token
-  const verificationToken = uuidv4();
-  console.log("verificationToken: ",verificationToken);
+  // const verificationToken = uuidv4();
+  // console.log("verificationToken: ",verificationToken);
   //Create email transproter
 
   function generatePassKey(){
